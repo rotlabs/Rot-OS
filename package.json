@@ -1,0 +1,54 @@
+{
+  "name": "@useless/monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The complete framework for building nothing, efficiently.",
+  "keywords": [
+    "framework",
+    "nothing",
+    "useless",
+    "bot",
+    "enterprise",
+    "scalable",
+    "production-ready",
+    "typescript",
+    "monorepo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rotlabs/Rot-OS.git"
+  },
+  "license": "MIT",
+  "author": "The useless bot Team",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "test:coverage": "pnpm -r test:coverage",
+    "lint": "pnpm -r lint",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
+    "clean": "pnpm -r clean",
+    "dev": "pnpm -r --parallel dev",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "pnpm build && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.4",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0"
+}
