@@ -42,10 +42,10 @@ body {
   height: calc(100vh - 40px);
   background: var(--win95-teal);
   overflow: hidden;
-  background-image: url('../assets/rotos.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: auto;
+  background-image: url('../assets/rotos.png'), url('../assets/Clouds.png');
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  background-size: auto, cover;
 }
 
 /* Desktop Icons */
@@ -866,4 +866,90 @@ body {
   border-top: 1px solid #808080;
   font-size: 10px;
   color: #000;
+}
+
+/* Windows 95 scrollbar styling for file viewer */
+.file-viewer-content::-webkit-scrollbar {
+  width: 16px;
+}
+
+.file-viewer-content::-webkit-scrollbar-track {
+  background: var(--win95-white);
+  border-left: 1px solid var(--win95-dark-gray);
+  border-top: 1px solid var(--win95-dark-gray);
+}
+
+.file-viewer-content::-webkit-scrollbar-thumb {
+  background: var(--win95-gray);
+  border-left: 1px solid var(--win95-button-highlight);
+  border-top: 1px solid var(--win95-button-highlight);
+  border-right: 1px solid var(--win95-button-shadow);
+  border-bottom: 1px solid var(--win95-button-shadow);
+}
+
+.file-viewer-content::-webkit-scrollbar-button {
+  height: 16px;
+  background: var(--win95-gray);
+  border-left: 1px solid var(--win95-button-highlight);
+  border-top: 1px solid var(--win95-button-highlight);
+  border-right: 1px solid var(--win95-button-shadow);
+  border-bottom: 1px solid var(--win95-button-shadow);
+}
+
+.file-viewer-content::-webkit-scrollbar-button:vertical:decrement {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M4 2 L1 6 L7 6 Z" fill="black"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.file-viewer-content::-webkit-scrollbar-button:vertical:increment {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M4 6 L1 2 L7 2 Z" fill="black"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Windows 95 scrollbar styling for file explorer content areas */
+#explorer-content::-webkit-scrollbar,
+#explorer-window .window-body > div > div:first-child::-webkit-scrollbar {
+  width: 16px;
+}
+
+#explorer-content::-webkit-scrollbar-track,
+#explorer-window .window-body > div > div:first-child::-webkit-scrollbar-track {
+  background: var(--win95-white);
+  border-left: 1px solid var(--win95-dark-gray);
+  border-top: 1px solid var(--win95-dark-gray);
+}
+
+#explorer-content::-webkit-scrollbar-thumb,
+#explorer-window .window-body > div > div:first-child::-webkit-scrollbar-thumb {
+  background: var(--win95-gray);
+  border-left: 1px solid var(--win95-button-highlight);
+  border-top: 1px solid var(--win95-button-highlight);
+  border-right: 1px solid var(--win95-button-shadow);
+  border-bottom: 1px solid var(--win95-button-shadow);
+}
+
+#explorer-content::-webkit-scrollbar-button,
+#explorer-window .window-body > div > div:first-child::-webkit-scrollbar-button {
+  height: 16px;
+  background: var(--win95-gray);
+  border-left: 1px solid var(--win95-button-highlight);
+  border-top: 1px solid var(--win95-button-highlight);
+  border-right: 1px solid var(--win95-button-shadow);
+  border-bottom: 1px solid var(--win95-button-shadow);
+}
+
+#explorer-content::-webkit-scrollbar-button:vertical:decrement,
+#explorer-window .window-body > div > div:first-child::-webkit-scrollbar-button:vertical:decrement {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M4 2 L1 6 L7 6 Z" fill="black"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#explorer-content::-webkit-scrollbar-button:vertical:increment,
+#explorer-window .window-body > div > div:first-child::-webkit-scrollbar-button:vertical:increment {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M4 6 L1 2 L7 2 Z" fill="black"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
 }
