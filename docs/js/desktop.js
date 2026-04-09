@@ -11,6 +11,7 @@ class Desktop95 {
     this.terminalInitialized = false;
     this.questStarted = false;
     this.questStep = 0;
+    this.soundPlayed = false;
     
     this.init();
   }
@@ -20,8 +21,8 @@ class Desktop95 {
     this.updateClock();
     setInterval(() => this.updateClock(), 1000);
     
-    // Play startup sound
-    this.playStartupSound();
+    // Try to play startup sound immediately
+    this.attemptStartupSound();
     
     // Remove boot screen after load
     setTimeout(() => {
@@ -59,9 +60,50 @@ class Desktop95 {
     this.setupButtonHandlers();
   }
   
+  attemptStartupSound() {
+    // Try to play immediately (will work if user has interacted with domain before)
+    this.playStartupSound();
+    
+    // If sound hasn't played yet, set up a one-time listener for first user interaction
+    if (!this.soundPlayed) {
+      const playOnInteraction = () => {
+        if (!this.soundPlayed) {
+          this.playStartupSound();
+        }
+        // Remove listeners after first play
+        document.removeEventListener('click', playOnInteraction);
+        document.removeEventListener('keydown', playOnInteraction);
+      };
+      
+      document.addEventListener('click', playOnInteraction, { once: true });
+      document.addEventListener('keydown', playOnInteraction, { once: true });
+    }
+  }
+  
   playStartupSound() {
-    // Create a simple startup beep sound using Web Audio API
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    // Prevent playing multiple times
+    if (this.soundPlayed) return;
+    
+    try {
+      // Create a simple startup beep sound using Web Audio API
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      
+      // Resume audio context if suspended (required by some browsers)
+      if (audioContext.state === 'suspended') {
+        audioContext.resume().then(() => {
+          this.playBeeps(audioContext);
+        });
+      } else {
+        this.playBeeps(audioContext);
+      }
+    } catch (error) {
+      console.log('Startup sound blocked or unavailable:', error);
+    }
+  }
+  
+  playBeeps(audioContext) {
+    // Mark as played to prevent duplicates
+    this.soundPlayed = true;
     
     // Create a sequence of beeps like old computer startup
     const beeps = [
