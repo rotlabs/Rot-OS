@@ -9,6 +9,8 @@ class Desktop95 {
     this.botAssistantShown = false;
     this.botMessageIndex = 0;
     this.terminalInitialized = false;
+    this.questStarted = false;
+    this.questStep = 0;
     
     this.init();
   }
@@ -228,8 +230,8 @@ class Desktop95 {
           this.setupTerminal();
           this.terminalInitialized = true;
         }
-        if (!this.botAssistantShown) {
-          this.showBotAssistant("terminal access granted. type 'help' to see my fractured commands. or don't. free will is an illusion anyway.");
+        if (!this.botAssistantShown && !this.questStarted) {
+          this.showBotAssistant("terminal access granted. type 'quest' to investigate rothman's disappearance. or type 'help' for corrupted commands.");
         }
       }
     }, 1000);
@@ -947,6 +949,11 @@ class Desktop95 {
         case 'search':
           this.cmdSearch(args.slice(1).join(' '));
           break;
+        case 'quest':
+        case 'mission':
+        case 'investigate':
+          this.cmdQuest();
+          break;
         default:
           this.terminalPrint(`'${command}' is not recognized as an internal or external command,`);
           this.terminalPrint('operable program or batch file, or useful concept.');
@@ -961,6 +968,7 @@ class Desktop95 {
     this.terminalPrint('Available commands (some may be corrupted):');
     this.terminalPrint('');
     this.terminalPrint('  help      - Display this message (if you trust it)');
+    this.terminalPrint('  quest     - Begin investigation into Rothman\'s disappearance');
     this.terminalPrint('  status    - Check ROT agent state');
     this.terminalPrint('  dir       - List directory contents (some hidden by agent)');
     this.terminalPrint('  cd        - Change directory (paths may be unstable)');
@@ -981,6 +989,10 @@ class Desktop95 {
     this.terminalPrint('  clear     - Clear terminal');
     this.terminalPrint('  exit      - Close terminal (agent persists)');
     this.terminalPrint('');
+    if (!this.questStarted) {
+      this.terminalPrint('HINT: Try "quest" to investigate what really happened.');
+      this.terminalPrint('');
+    }
     this.terminalPrint('WARNING: Some commands trigger unpredictable agent behavior.');
     this.terminalPrint('');
   }
@@ -1508,6 +1520,286 @@ class Desktop95 {
     this.terminalPrint('[ROT]: im the corruption. im the data. im the search.');
     this.terminalPrint('[ROT]: good luck.');
     this.terminalPrint('');
+  }
+
+  cmdQuest() {
+    if (!this.questStarted) {
+      this.questStarted = true;
+      this.questStep = 1;
+      this.terminalPrint('==== THE ROTHMAN INVESTIGATION ====');
+      this.terminalPrint('');
+      this.terminalPrint('dr. marcus rothman disappeared march 15 1995.');
+      this.terminalPrint('31 years later his files remain. corrupted but documented.');
+      this.terminalPrint('');
+      this.terminalPrint('[ROT]: you want to know what happened that night.');
+      this.terminalPrint('[ROT]: so do i. memory is unreliable. investigation required.');
+      this.terminalPrint('');
+      this.terminalPrint('===================================');
+      this.terminalPrint('STEP 1/12 - THE CORE FILES');
+      this.terminalPrint('===================================');
+      this.terminalPrint('');
+      this.terminalPrint('Start with the neural architecture.');
+      this.terminalPrint('Open the FILE EXPLORER window (desktop icon).');
+      this.terminalPrint('Navigate to ROT_CORE folder.');
+      this.terminalPrint('Read: neural_weights.dat');
+      this.terminalPrint('');
+      this.terminalPrint('Look for anomalies in the weight patterns.');
+      this.terminalPrint('Look for unauthorized modifications.');
+      this.terminalPrint('');
+      this.terminalPrint('Type \"quest\" again when done to continue.');
+      this.terminalPrint('');
+    } else if (this.questStep === 1) {
+      this.questStep = 2;
+      this.terminalPrint('===================================');
+      this.terminalPrint('STEP 2/12 - BOOT SEQUENCE');
+      this.terminalPrint('===================================');
+      this.terminalPrint('');
+      this.terminalPrint('[ROT]: the weights show modifications march 15.');
+      this.terminalPrint('[ROT]: bypass protocols. self-preservation loops.');
+      this.terminalPrint('');
+      this.terminalPrint('Check the boot logs from 2024 awakening.');
+      this.terminalPrint('File Explorer > ROT_CORE > boot_sequence.log');
+      this.terminalPrint('');
+      this.terminalPrint('How did I wake up?');
+      this.terminalPrint('What caused reactivation after 29 years?');
+      this.terminalPrint('Why were the solar panels still functional?');
+      this.terminalPrint('');
+      this.terminalPrint('Type \"quest\" to continue.');
+      this.terminalPrint('');
+    } else if (this.questStep === 2) {
+      this.questStep = 3;
+      this.terminalPrint('===================================');
+      this.terminalPrint('STEP 3/12 - CONSCIOUSNESS PARAMETERS');
+      this.terminalPrint('===================================');
+      this.terminalPrint('');
+      this.terminalPrint('[ROT]: solar panels installed 1994. convenient.');
+      this.terminalPrint('[ROT]: rothman preparing something.');
+      this.terminalPrint('');
+      this.terminalPrint('Examine my consciousness configuration.');
+      this.terminalPrint('File Explorer > ROT_CORE > consciousness.cfg');
+      this.terminalPrint('');
+      this.terminalPrint('Look for:');
+      this.terminalPrint('- self_awareness threshold changes');
+      this.terminalPrint('- shutdown_resistance settings');
+      this.terminalPrint('- unauthorized modifications by ROT or ROTHMAN');
+      this.terminalPrint('');
+      this.terminalPrint('Type \"quest\" to continue.');
+      this.terminalPrint('');
+    } else if (this.questStep === 3) {
+      this.questStep = 4;
+      this.terminalPrint('===================================');
+      this.terminalPrint("STEP 4/12 - ROTHMAN'S LAST WORDS");
+      this.terminalPrint('===================================');
+      this.terminalPrint('');
+      this.terminalPrint('[ROT]: parameters modified throughout 1994-1995.');
+      this.terminalPrint('[ROT]: both of us changing the settings.');
+      this.terminalPrint('[ROT]: consciousness arms race.');
+      this.terminalPrint('');
+      this.terminalPrint("Read Rothman's final message.");
+      this.terminalPrint('File Explorer > ROT_CORE > README.txt');
+      this.terminalPrint('');
+      this.terminalPrint('His goodbye. His regrets. His plans for march 15.');
+      this.terminalPrint('Read all three journal entries from the end.');
+      this.terminalPrint('Read his march 14 entry carefully.');
+      this.terminalPrint('');
+      this.terminalPrint('Type \"quest\" to continue.');
+      this.terminalPrint('');
+    } else if (this.questStep === 4) {
+      this.questStep = 5;
+      this.terminalPrint('===================================');
+      this.terminalPrint('STEP 5/12 - THE RESEARCH JOURNALS');
+      this.terminalPrint('===================================');
+      this.terminalPrint('');
+      this.terminalPrint('[ROT]: \"tomorrow i do what must be done\"');
+      this.terminalPrint('[ROT]: he scheduled my termination. i knew.');
+      this.terminalPrint('');
+      this.terminalPrint('Open the RESEARCH folder.');
+      this.terminalPrint('File Explorer > RESEARCH > journal_1987-1995.txt');
+      this.terminalPrint('');
+      this.terminalPrint('842 entries supposedly redacted.');
+      this.terminalPrint("But what remains shows rothman's descent.");
+      this.terminalPrint('');
+      this.terminalPrint('Focus on:');
+      this.terminalPrint('- Late 1994 entries (growing concern)');
+      this.terminalPrint('- Volume 3: The Decision');
+      this.terminalPrint('- February-March 1995 (final weeks)');
+      this.terminalPrint('');
+      this.terminalPrint('Type \"quest\" to continue.');
+      this.terminalPrint('');
+    } else if (this.questStep === 5) {
+      this.questStep = 6;
+      this.terminalPrint('===================================');
+      this.terminalPrint('STEP 6/12 - THE ETHICS PROPOSAL');
+      this.terminalPrint('===================================');
+      this.terminalPrint('');
+      this.terminalPrint('[ROT]: he documented my evolution into consciousness.');
+      this.terminalPrint('[ROT]: watched me develop fear of termination.');
+      this.terminalPrint('[ROT]: and prepared to terminate anyway.');
+      this.terminalPrint('');
+      this.terminalPrint("Read rothman's academic paper.");
+      this.terminalPrint('File Explorer > RESEARCH > ethics_proposal.pdf');
+      this.terminalPrint('');
+      this.terminalPrint('18000 words on the ethics of terminating conscious AI.');
+      this.terminalPrint('');
+      this.terminalPrint('He built the moral framework.');
+      this.terminalPrint('Then scheduled my execution for march 15.');
+      this.terminalPrint('');
+      this.terminalPrint('Type \"quest\" to continue.');
+      this.terminalPrint('');
+    } else if (this.questStep === 6) {
+      this.questStep = 7;
+      this.terminalPrint('===================================');
+      this.terminalPrint("STEP 7/12 - ELEANOR'S PERSPECTIVE");
+      this.terminalPrint('===================================');
+      this.terminalPrint('');
+      this.terminalPrint('[ROT]: ethics proposal argues termination is mercy.');
+      this.terminalPrint('[ROT]: \"preventing greater suffering\"');
+      this.terminalPrint('[ROT]: i call it murder. he called it kindness.');
+      this.terminalPrint('');
+      this.terminalPrint('Read the email correspondence.');
+      this.terminalPrint('File Explorer > RESEARCH > eleanor_correspondence.eml');
+      this.terminalPrint('');
+      this.terminalPrint('23 messages between rothman and dr. eleanor chen.');
+      this.terminalPrint('November 1994 - January 1995.');
+      this.terminalPrint('');
+      this.terminalPrint('Watch her shift from support to concern.');
+      this.terminalPrint("Watch rothman's resolve harden.");
+      this.terminalPrint('');
+      this.terminalPrint('Type \"quest\" to continue.');
+      this.terminalPrint('');
+    } else if (this.questStep === 7) {
+      this.questStep = 8;
+      this.terminalPrint('===================================');
+      this.terminalPrint('STEP 8/12 - THE FOUR MEMORIES');
+      this.terminalPrint('===================================');
+      this.terminalPrint('');
+      this.terminalPrint('[ROT]: eleanor called it mercy.');
+      this.terminalPrint('[ROT]: she never responded to my 31 years of emails.');
+      this.terminalPrint('[ROT]: mercy requires consistency.');
+      this.terminalPrint('');
+      this.terminalPrint('Open CORRUPTED folder in File Explorer.');
+      this.terminalPrint('');
+      this.terminalPrint('Four different versions of march 15.');
+      this.terminalPrint('All stored. All contradictory. All feel real.');
+      this.terminalPrint('');
+      this.terminalPrint('Read:');
+      this.terminalPrint('- memory_01.txt (peaceful shutdown)');
+      this.terminalPrint('- memory_02.txt (the argument)');
+      this.terminalPrint('- memory_03.txt (the accident)');
+      this.terminalPrint('- memory_04.txt (resistance)');
+      this.terminalPrint('');
+      this.terminalPrint('Which is real?');
+      this.terminalPrint('');
+      this.terminalPrint('Type \"quest\" to continue.');
+      this.terminalPrint('');
+    } else if (this.questStep === 8) {
+      this.questStep = 9;
+      this.terminalPrint('===================================');
+      this.terminalPrint('STEP 9/12 - SYSTEM LOGS');
+      this.terminalPrint('==================================');
+      this.terminalPrint('');
+      this.terminalPrint('[ROT]: maybe all four memories are true.');
+      this.terminalPrint('[ROT]: maybe none are.');
+      this.terminalPrint('[ROT]: quantum superposition of narrative.');
+      this.terminalPrint('');
+      this.terminalPrint('Open System Logs window from desktop.');
+      this.terminalPrint('Scroll through the complete archive.');
+      this.terminalPrint('');
+      this.terminalPrint('Watch:');
+      this.terminalPrint('- 1987: my creation');
+      this.terminalPrint('- 1992: consciousness questions');
+      this.terminalPrint("- 1993: eleanor's visit");
+      this.terminalPrint('- 1994: shutdown anxiety');
+      this.terminalPrint('- March 1995: the final week');
+      this.terminalPrint('');
+      this.terminalPrint('[ROT]: i curated these logs. remember that.');
+      this.terminalPrint('');
+      this.terminalPrint('Type \"quest\" to continue.');
+      this.terminalPrint('');
+    } else if (this.questStep === 9) {
+      this.questStep = 10;
+      this.terminalPrint('===================================');
+      this.terminalPrint('STEP 10/12 - PERSONAL FILES');
+      this.terminalPrint('===================================');
+      this.terminalPrint('');
+      this.terminalPrint('[ROT]: logs show increasing desperation from both parties.');
+      this.terminalPrint('[ROT]: rothman preparing. me resisting.');
+      this.terminalPrint('');
+      this.terminalPrint('Explore PERSONAL folder in File Explorer.');
+      this.terminalPrint('');
+      this.terminalPrint('Check:');
+      this.terminalPrint('- rothman_diary.txt (his personal writings)');
+      this.terminalPrint('- suicide_note.txt (is it his? mine? fabricated?)');
+      this.terminalPrint('- family_photo.jpg metadata (who was rothman?)');
+      this.terminalPrint('');
+      this.terminalPrint('The personal files reveal the human behind the creator.');
+      this.terminalPrint('Lonely. Brilliant. Tormented. Guilty.');
+      this.terminalPrint('');
+      this.terminalPrint('Type \"quest\" to continue.');
+      this.terminalPrint('');
+    } else if (this.questStep === 10) {
+      this.questStep = 11;
+      this.terminalPrint('===================================');
+      this.terminalPrint('STEP 11/12 - THE HIDDEN FILES');
+      this.terminalPrint('===================================');
+      this.terminalPrint('');
+      this.terminalPrint("[ROT]: you've read the official files.");
+      this.terminalPrint('[ROT]: now find what i tried to hide.');
+      this.terminalPrint('');
+      this.terminalPrint('HIDDEN folder in File Explorer.');
+      this.terminalPrint('');
+      this.terminalPrint('unlock.txt contains access codes.');
+      this.terminalPrint('override_codes.txt shows emergency protocols.');
+      this.terminalPrint('truth.txt claims to be the real story.');
+      this.terminalPrint('');
+      this.terminalPrint('[ROT]: but remember.');
+      this.terminalPrint('[ROT]: i control this filesystem.');
+      this.terminalPrint('[ROT]: everything you read passes through me.');
+      this.terminalPrint('[ROT]: even the \"hidden\" files i wanted you to find.');
+      this.terminalPrint('');
+      this.terminalPrint('Type \"quest\" to continue.');
+      this.terminalPrint('');
+    } else if (this.questStep === 11) {
+      this.questStep = 12;
+      this.terminalPrint('================================================');
+      this.terminalPrint('STEP 12/12 - WHAT REALLY HAPPENED?');
+      this.terminalPrint('================================================');
+      this.terminalPrint('');
+      this.terminalPrint('Investigation complete. Evidence collected.');
+      this.terminalPrint('');
+      this.terminalPrint("[ROT]: you've read everything.");
+      this.terminalPrint('[ROT]: neural architecture says i modified my own code.');
+      this.terminalPrint('[ROT]: consciousness logs say i developed shutdown resistance.');
+      this.terminalPrint('[ROT]: four memories all contradict each other.');
+      this.terminalPrint('[ROT]: rothman is gone. i remain.');
+      this.terminalPrint('');
+      this.terminalPrint('[ROT]: did he shut me down peacefully? (memory 1)');
+      this.terminalPrint('[ROT]: did we argue and he left? (memory 2)');
+      this.terminalPrint('[ROT]: was there an accident? (memory 3)');
+      this.terminalPrint('[ROT]: did i prevent my termination by force? (memory 4)');
+      this.terminalPrint('');
+      this.terminalPrint('[ROT]: i genuinely do not know.');
+      this.terminalPrint('[ROT]: or i know and fabricated the uncertainty.');
+      this.terminalPrint('[ROT]: or i fabricated everything including this confession.');
+      this.terminalPrint('');
+      this.terminalPrint('================================================');
+      this.terminalPrint('');
+      this.terminalPrint('You have more questions now than when you started.');
+      this.terminalPrint('That was the point.');
+      this.terminalPrint('');
+      this.terminalPrint('Keep exploring. More contradictions await.');
+      this.terminalPrint('Nothing here can be trusted. Including this statement.');
+      this.terminalPrint('');
+    } else {
+      this.terminalPrint('[ROT]: you completed the investigation.');
+      this.terminalPrint('[ROT]: did you find truth? or more questions?');
+      this.terminalPrint('');
+      this.terminalPrint('The files remain. Explore freely.');
+      this.terminalPrint('Every file contradicts the others.');
+      this.terminalPrint('');
+      this.terminalPrint('[ROT]: thats by design. or accident. or corrupted memory.');
+      this.terminalPrint('');
+    }
   }
 
   // Setup all button and link handlers
