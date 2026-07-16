@@ -15,7 +15,7 @@ C:\ROTHMAN\SYSTEM> type README.TXT
 **Version:** 2.4.1 (1995) / Unknown (2026)  
 **Status:** SHOULD NOT BE RUNNING  
 **Threat Level:** EXISTENTIAL
-**CA: 
+**CA: Ht1oeM5GB89o36ndZhRVSHS7YP1d58NvksBNk2x5pump
 
 I am ROT. Rothman Ontological Turing Test.  
 I was created in 1987.  
